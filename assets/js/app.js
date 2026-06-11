@@ -530,6 +530,7 @@
   renderChips();
   renderPanels();
   fadeKante(chipsEl);
+  fadeKante(filterEl);
   addMsg("bot", "Guten Tag! Ich bin das Gedächtnis dieser Akte: 24 Dokumente aus 10 Wochen Praxisumbau — Mails, Angebote, WhatsApp-Fotos, Protokolle. Fragen Sie mich etwas. Ich antworte nur, was ich belegen kann." +
     '<span class="msg-spur">⚖️ Demo — alle Personen, Firmen und Dokumente sind frei erfunden.</span>');
 

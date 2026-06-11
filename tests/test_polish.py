@@ -81,6 +81,20 @@ def main():
               "KI-Dienst" in erkl and "nicht gespeichert" in erkl)
         check("Footer-Erklärung verlinkt Datenschutz inline",
               page.locator('.footer-erklaer a[href="datenschutz.html"]').count() == 1)
+        # --- Desktop: Filterleiste — „📷 Fotos“-Chip darf nicht clippen (Scroll + Fade-Kante)
+        if page.evaluate("(s => s.scrollWidth > s.clientWidth + 1)(document.getElementById('filter-leiste'))"):
+            check("Desktop-Filter: Fade-Kante zeigt Überlauf an",
+                  page.evaluate("document.querySelector('.filter-zeile').classList.contains('hat-mehr')"))
+        page.evaluate("(s => s.scrollLeft = s.scrollWidth)(document.getElementById('filter-leiste'))")
+        page.wait_for_timeout(250)
+        foto_chip_ok = page.evaluate("""() => {
+          const s = document.getElementById('filter-leiste');
+          const c = s.querySelector('[data-filter="foto"]');
+          const sr = s.getBoundingClientRect(), cr = c.getBoundingClientRect();
+          return cr.right <= sr.right + 2 && cr.width > 30;
+        }""")
+        check("Desktop-Filter: 📷-Fotos-Chip voll sichtbar (ggf. nach Scroll)", foto_chip_ok)
+
         page.goto(BASE + "/impressum.html", wait_until="domcontentloaded")
         imp = page.evaluate("document.body.innerText")
         check("Impressum: § 5 DDG + USt-ID", "§ 5 DDG" in imp and "DE462559965" in imp)

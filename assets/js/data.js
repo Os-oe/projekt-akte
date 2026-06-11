@@ -444,7 +444,7 @@
         foto: "assets/img/foto-fertig.jpg",
         fotoAlt: "Foto-Anlage: fertiggestellter Empfangsbereich der Praxis",
         body: [
-          { t: "Datum: 08.05.2026, 10:00 Uhr · Anwesend: Dr. med. Julia Hartmann (AG), Thomas Weber (AN). Die Leistung wird förmlich abgenommen. Die Abnahme erfolgt unter Vorbehalt der nachstehenden Restpunkte:" },
+          { t: "Datum: 08.05.2026, 10:00 Uhr · Anwesend: Dr. med. Julia Hartmann (AG), Thomas Weber (AN). Die Leistung wird förmlich abgenommen. Die Restpunkte R1 und R2 aus der Vorbegehung waren bei der Begehung bereits erledigt; die Abnahme erfolgt unter Vorbehalt des offenen Restpunkts R3:" },
           { t: "R1 — Silikonfuge barrierefreies WC: erneuert am 05.05., abgenommen. ✓ erledigt\nR2 — Türblatt Behandlungsraum 2: Austausch erfolgt, abgenommen. ✓ erledigt\nR3 — Doppelsteckdose Empfangstresen: weiterhin ohne Funktion. OFFEN — Nachbesserung bis 22.05.2026 zugesagt.", anchor: "a23-restpunkte" },
           { t: "Gewährleistung: Es gilt die Verjährungsfrist für Mängelansprüche von 4 Jahren gemäß § 13 Abs. 4 Nr. 1 VOB/B, beginnend mit dem heutigen Tag (bis 08.05.2030).", anchor: "a23-gewaehrleistung" },
           { t: "Bemerkungen: AG kündigt die Prüfung der Position N1.4 (zusätzliche Stemm- und Schließarbeiten, 1.200,00 €) im Rahmen der Schlussrechnungsprüfung an. Die Gewährleistungsbürgschaft (5 %, § 17 VOB/B) ist noch nicht gestellt. Anlage: Foto Empfangsbereich (fertiggestellt).", anchor: "a23-bemerkungen" },

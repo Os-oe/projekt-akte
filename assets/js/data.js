@@ -51,7 +51,7 @@
         body: [
           { t: "Sehr geehrter Herr Weber," },
           { t: "wir planen den Umbau unserer Hausarztpraxis im 1. OG, Lindenplatz 12 in Ludwigsburg — insgesamt ca. 180 m². Konkret: neuer Empfangsbereich, drei Behandlungsräume, ein barrierefreies Patienten-WC, neue Böden und Anstrich.", anchor: "a01-umfang" },
-          { t: "Das Gebäude ist ein Altbau (Baujahr 1978). Wichtig wäre uns ein Start ab Mitte/Ende März, da wir den Praxisbetrieb in dieser Zeit in unsere Zweigstelle verlagern.", anchor: "a01-baujahr" },
+          { t: "Das Gebäude ist ein Altbau (Baujahr 1972). Wichtig wäre uns ein Start ab Mitte/Ende März, da wir den Praxisbetrieb in dieser Zeit in unsere Zweigstelle verlagern.", anchor: "a01-baujahr" },
           { t: "Könnten Sie zeitnah zu einem Ortstermin kommen und uns ein Angebot erstellen?" },
           { t: "Mit freundlichen Grüßen\nDr. med. Julia Hartmann" }
         ]
@@ -63,7 +63,7 @@
         meta: "Notiz T. Weber · Ortstermin Lindenplatz 12, 14:00–15:30 Uhr",
         body: [
           { t: "Begehung mit Dr. Hartmann. Fläche bestätigt: ca. 180 m², 1. OG, Aufzug vorhanden. Empfang + 4 Räume + 2 WCs, davon 1 zum barrierefreien WC umbauen." },
-          { t: "ACHTUNG: Unterverteilung sieht original aus (Bj. 1978, Schraubsicherungen, kein FI). Verdacht auf Aluminium-Verkabelung — bei Altbauten dieser Zeit üblich. Vor Angebotsabgabe nicht zu öffnen, Wände verkleidet. Risiko im Angebot als Hinweis aufnehmen, Befund erst nach Demontage möglich.", anchor: "a02-elektrik" },
+          { t: "ACHTUNG: Unterverteilung sieht original aus (Bj. 1972, Schraubsicherungen, kein FI). Verdacht auf Aluminium-Verkabelung — bei Altbauten dieser Zeit üblich. Vor Angebotsabgabe nicht zu öffnen, Wände verkleidet. Risiko im Angebot als Hinweis aufnehmen, Befund erst nach Demontage möglich.", anchor: "a02-elektrik" },
           { t: "Maße aufgenommen, Fotos gemacht. Grundriss fehlt noch — Frau Dr. Hartmann reicht ihn nach." },
           { t: "Estrich in Raum 2 klingt teilweise hohl → einplanen: Ausgleichsmasse. Fenster bleiben." }
         ]
@@ -109,7 +109,7 @@
               foot: [["", "Angebotssumme netto", "103.400,00 €"], ["", "zzgl. 19 % USt.", "19.646,00 €"], ["", "Angebotssumme brutto", "123.046,00 €"]],
               anchorFoot: "a04-summe"
           } },
-          { t: "Hinweis: Der Zustand der vorhandenen Elektroinstallation (Bj. 1978) ist ohne Öffnung der Wände nicht abschließend beurteilbar. Sollte sich nach Demontage ein nicht regelkonformer Bestand zeigen, sind die erforderlichen Mehrleistungen nicht Bestandteil dieses Angebots und werden als Nachtrag angeboten.", anchor: "a04-vorbehalt" },
+          { t: "Hinweis: Der Zustand der vorhandenen Elektroinstallation (Bj. 1972) ist ohne Öffnung der Wände nicht abschließend beurteilbar. Sollte sich nach Demontage ein nicht regelkonformer Bestand zeigen, sind die erforderlichen Mehrleistungen nicht Bestandteil dieses Angebots und werden als Nachtrag angeboten.", anchor: "a04-vorbehalt" },
           { t: "Ausführungsgrundlage: VOB/B. Bindefrist: 4 Wochen. Bauzeit: ca. 6 Wochen ab Baufreigabe." }
         ]
       },
@@ -265,7 +265,7 @@
         foto: "assets/img/foto-alu.jpg",
         fotoAlt: "Baustellenfoto: geöffnete Verteilerdose mit Aluminium-Adern",
         chat: [
-          { wer: "weber", zeit: "10:12", t: "Befund ist da: Unser Elektromeister hat die Verteilerdosen geöffnet — es ist durchgehend Aluminium-Verkabelung von 1978. Entspricht nicht den heutigen Anforderungen der DIN VDE 0100, an den Klemmstellen besteht Brandgefahr. An diesen Bestand dürfen wir die neue Praxiselektrik nicht anschließen.", anchor: "a13-befund" },
+          { wer: "weber", zeit: "10:12", t: "Befund ist da: Unser Elektromeister hat die Verteilerdosen geöffnet — es ist durchgehend Aluminium-Verkabelung von 1972. Entspricht nicht den heutigen Anforderungen der DIN VDE 0100, an den Klemmstellen besteht Brandgefahr. An diesen Bestand dürfen wir die neue Praxiselektrik nicht anschließen.", anchor: "a13-befund" },
           { wer: "weber", zeit: "10:13", foto: true, t: "📷 Foto: geöffnete Verteilerdose, Alu-Adern sichtbar" },
           { wer: "weber", zeit: "10:15", t: "Sie bekommen dazu heute noch unsere schriftliche Bedenkenanzeige und bis Anfang nächster Woche ein Nachtragsangebot für die komplette Neuverkabelung." },
           { wer: "hartmann", zeit: "11:02", t: "Verstanden. Dann lieber jetzt richtig machen — ich warte auf Ihr Angebot." }
@@ -280,7 +280,7 @@
         betreff: "Bedenkenanzeige gemäß § 4 Abs. 3 VOB/B — vorhandene Elektroinstallation, BV Praxisumbau Dr. Hartmann",
         body: [
           { t: "Sehr geehrte Frau Dr. Hartmann," },
-          { t: "bei den Demontage- und Stemmarbeiten wurde die vorhandene Elektroinstallation freigelegt. Unser Elektrofachbetrieb hat festgestellt: durchgehende Aluminium-Verkabelung (Baujahr 1978), Unterverteilung ohne Fehlerstromschutz, Klemmstellen mit Übergangswiderständen. Der Bestand entspricht nicht den allgemein anerkannten Regeln der Technik (DIN VDE 0100)." },
+          { t: "bei den Demontage- und Stemmarbeiten wurde die vorhandene Elektroinstallation freigelegt. Unser Elektrofachbetrieb hat festgestellt: durchgehende Aluminium-Verkabelung (Baujahr 1972), Unterverteilung ohne Fehlerstromschutz, Klemmstellen mit Übergangswiderständen. Der Bestand entspricht nicht den allgemein anerkannten Regeln der Technik (DIN VDE 0100)." },
           { t: "Hiermit melden wir gemäß § 4 Abs. 3 VOB/B schriftlich Bedenken gegen die vorgesehene Art der Ausführung an, soweit die neue Elektroinstallation an den vorhandenen Bestand angeschlossen werden soll. Bei Anschluss an die Alt-Verkabelung bestehen Brandgefahr und Gefährdung des Praxisbetriebs; eine Gewährleistung für diese Ausführung können wir nicht übernehmen.", anchor: "a14-kern" },
           { t: "Wir empfehlen die vollständige Erneuerung der Elektroinstallation im Umbaubereich und unterbreiten Ihnen hierzu kurzfristig ein Nachtragsangebot gemäß § 2 Abs. 6 VOB/B. Bis zu Ihrer Entscheidung stellen wir die Elektroarbeiten in den betroffenen Bereichen zurück.", anchor: "a14-empfehlung" },
           { t: "Mit freundlichen Grüßen\nThomas Weber, Geschäftsführer" }
@@ -486,10 +486,10 @@
       {
         id: "c1",
         frage: "Haben wir die Bedenken zur Elektrik schriftlich angezeigt?",
-        antwort: "Ja — und zwar rechtzeitig und formgerecht. Am 26.03.2026 ging die schriftliche Bedenkenanzeige nach § 4 Abs. 3 VOB/B an Dr. Hartmann raus (Einschreiben + E-Mail-Vorab), einen Tag nachdem der Elektromeister die Aluverkabelung von 1978 bestätigt hatte. Damit ist die Haftungsfrage für die Alt-Elektrik sauber dokumentiert.",
+        antwort: "Ja — und zwar rechtzeitig und formgerecht. Am 26.03.2026 ging die schriftliche Bedenkenanzeige nach § 4 Abs. 3 VOB/B an Dr. Hartmann raus (Einschreiben + E-Mail-Vorab), einen Tag nachdem der Elektromeister die Aluverkabelung von 1972 bestätigt hatte. Damit ist die Haftungsfrage für die Alt-Elektrik sauber dokumentiert.",
         quellen: [
           { art: "A14", anchor: "a14-kern", snippet: "Hiermit melden wir gemäß § 4 Abs. 3 VOB/B schriftlich Bedenken gegen die vorgesehene Art der Ausführung an …" },
-          { art: "A13", anchor: "a13-befund", snippet: "… durchgehend Aluminium-Verkabelung von 1978. Entspricht nicht den heutigen Anforderungen der DIN VDE 0100 …" }
+          { art: "A13", anchor: "a13-befund", snippet: "… durchgehend Aluminium-Verkabelung von 1972. Entspricht nicht den heutigen Anforderungen der DIN VDE 0100 …" }
         ],
         unbekannt: false
       },

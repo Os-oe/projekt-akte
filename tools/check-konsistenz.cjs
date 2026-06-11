@@ -83,6 +83,12 @@ check("A24: § 16 Abs. 3 (Fälligkeit)", /§ 16 Abs\. 3/.test(allText(art("A24")
 check("A19: DIN 18040-1 (≥ 90 cm)", /DIN 18040-1/.test(allText(art("A19"))) && /90 cm/.test(allText(art("A19"))));
 check("A13/A14: DIN VDE 0100", /VDE 0100/.test(allText(art("A13"))) && /VDE 0100/.test(allText(art("A14"))));
 
+console.log("— Baujahr —");
+const korpusAll = AKTE.artefakte.map(allText).join("\n") +
+  "\n" + AKTE.chips.map(c => [c.frage, c.antwort, (c.quellen || []).map(q => q.snippet).join(" ")].join(" ")).join("\n");
+check("Baujahr durchgängig 1972 (kein 1978)", !/1978/.test(korpusAll));
+check("1972 belegt in A01/A02/A04/A14", ["A01", "A02", "A04", "A14"].every(id => /1972/.test(allText(art(id)))));
+
 console.log("— Referenzen (Chips / Offene Punkte / Wochen-Brief) —");
 const anchorMap = new Map(AKTE.artefakte.map(a => [a.id, anchorsOf(a)]));
 let refOk = true;

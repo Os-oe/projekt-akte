@@ -441,9 +441,10 @@
 
   function quelleMini(q) {
     var art = byId(q.art);
+    var kurz = art.titel.length > 26 ? art.titel.slice(0, 24) + "…" : art.titel;
     return '<button class="quelle-chip" data-panelquelle="1" data-art="' + q.art + '" data-anchor="' + (q.anchor || "") +
-      '" data-snippet="' + esc(art.titel) + '"><span class="q-icon">' + art.icon + "</span>" +
-      esc(art.id) + " · " + esc(art.datumText.replace(/^\w+, /, "")) + "</button>";
+      '" data-snippet="' + esc(art.titel) + '"><span class="q-icon">' + art.icon + "</span>" + esc(kurz) +
+      '<span class="q-datum">' + esc(art.datumText.replace(/^\w+, /, "")) + "</span></button>";
   }
 
   function renderPanels() {
@@ -478,12 +479,17 @@
 
   /* ---------- Scroll-Reveals ---------- */
 
-  var io = new IntersectionObserver(function (eintraege) {
-    eintraege.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add("sichtbar"); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  var FORCE_REVEAL = !("IntersectionObserver" in window) || /[?&]reveal=1/.test(location.search);
+  if (FORCE_REVEAL) {
+    document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("sichtbar"); });
+  } else {
+    var io = new IntersectionObserver(function (eintraege) {
+      eintraege.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("sichtbar"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  }
 
   /* ---------- Auto-Demo: erste Frage spielt nach Load genau 1× ---------- */
 
@@ -508,6 +514,17 @@
   addMsg("bot", "Guten Tag! Ich bin das Gedächtnis dieser Akte: 24 Dokumente aus 10 Wochen Praxisumbau — Mails, Angebote, WhatsApp-Fotos, Protokolle. Fragen Sie mich etwas. Ich antworte nur, was ich belegen kann." +
     '<span class="msg-spur">⚖️ Demo — alle Personen, Firmen und Dokumente sind frei erfunden.</span>');
 
-  setTimeout(autoDemo, FAST ? 150 : 1400);
+  /* Start erst, wenn der Chat wirklich im Blick ist — der Aha-Moment darf
+   * nicht unsichtbar unterhalb des Folds ablaufen (v. a. mobil). */
+  (function () {
+    var chatEl = document.querySelector(".chat");
+    if (!("IntersectionObserver" in window)) { setTimeout(autoDemo, FAST ? 150 : 1400); return; }
+    var demoIO = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) { demoIO.disconnect(); setTimeout(autoDemo, FAST ? 150 : 1200); }
+      });
+    }, { threshold: 0.35 });
+    demoIO.observe(chatEl);
+  })();
 
 })();

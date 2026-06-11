@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projekt-Akte — Kein Chatbot. Ein Projektgedächtnis.</title>
+  <meta name="description" content="Befragen Sie eine komplette Projektakte wie einen Mitarbeiter, der alles gelesen hat: Antwort in Sekunden — und das belegende Original-Dokument leuchtet auf. Live-Demo von OsAI.">
+  <link rel="canonical" href="https://projekt-akte.demo.osai.solutions/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Projekt-Akte — Kein Chatbot. Ein Projektgedächtnis.">
+  <meta property="og:description" content="Fragen statt suchen: Jede Antwort mit Quelle — das Original-Dokument leuchtet auf. Befragbare Demo-Projektakte (komplett fiktiv).">
+  <meta property="og:url" content="https://projekt-akte.demo.osai.solutions/">
+  <meta property="og:image" content="https://projekt-akte.demo.osai.solutions/assets/img/og.jpg">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='8' y='30' width='84' height='58' rx='10' fill='%23d9c489'/><rect x='8' y='22' width='34' height='14' rx='5' fill='%23b91c1c'/><rect x='20' y='48' width='60' height='6' rx='3' fill='%232b2620' opacity='.45'/><rect x='20' y='62' width='44' height='6' rx='3' fill='%232b2620' opacity='.3'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="topbar-brand" href="/">
+      <span class="akte-mark" aria-hidden="true"></span>
+      <span class="topbar-wort">PROJEKT-<em>AKTE</em></span>
+    </a>
+    <a class="topbar-cta" href="https://cal.com/osai-solutions/erstgespraech" target="_blank" rel="noopener">Erstgespräch buchen</a>
+  </header>
+
+  <section class="hero">
+    <span class="hero-badge"><span class="punkt"></span> Live-Demo · eine komplette Projektakte, befragbar</span>
+    <h1>Kein Chatbot.<br>Ein <em>Projektgedächtnis</em>.</h1>
+    <p class="hero-sub">Stellen Sie sich vor, jedes Ihrer Projekte hätte einen Mitarbeiter, der jede Mail gelesen, jedes Foto gesehen und jedes Telefonat mitgeschrieben hat. Fragen Sie ihn — unten, an einer echten Beispiel-Akte. Jede Antwort mit Quelle.</p>
+    <p class="hero-hinweis">⚖️ Alle Personen, Firmen und Dokumente dieser Akte sind frei erfunden.</p>
+  </section>
+
+  <main class="demo" id="demo">
+    <div class="demo-grid">
+
+      <aside class="akte" aria-label="Projektakte Praxisumbau Dr. Hartmann">
+        <div class="akte-kopf">
+          <h2>📁 Akte: Praxisumbau Dr. Hartmann</h2>
+          <span id="akte-zaehler"></span>
+        </div>
+        <div class="filter-leiste" id="filter-leiste" role="tablist" aria-label="Akte filtern"></div>
+        <div class="timeline" id="timeline"></div>
+      </aside>
+
+      <section class="chat" aria-label="Projektgedächtnis befragen">
+        <div class="chat-kopf">
+          <span class="chat-avatar"><img src="assets/img/osai-logo.png" alt="" width="20" height="20"></span>
+          <div>
+            <h2>Das Projektgedächtnis</h2>
+            <p>liest mit · merkt sich alles · antwortet mit Quelle</p>
+          </div>
+        </div>
+        <div class="chat-verlauf" id="chat-verlauf" aria-live="polite"></div>
+        <div class="chat-fuss">
+          <p class="fuss-label">Tippen Sie eine Frage an die Akte</p>
+          <div class="frage-chips" id="frage-chips"></div>
+          <form class="eingabe" id="eingabe-form">
+            <input type="text" id="eingabe-feld" maxlength="240" placeholder="… oder eigene Frage stellen" aria-label="Eigene Frage an die Akte">
+            <button type="submit" id="eingabe-senden">Fragen</button>
+          </form>
+          <p class="eingabe-hinweis">Eigene Fragen beantwortet die Demo live aus der Akte — Details im <a href="datenschutz.html">Datenschutz</a>.</p>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <section class="panels">
+    <div class="panels-kopf reveal">
+      <h2>Es beantwortet nicht nur Fragen.</h2>
+      <p>Jede Woche schreibt das Projektgedächtnis von selbst einen Wochen-Brief — und führt die offenen Punkte. Ohne dass jemand etwas pflegen muss.</p>
+    </div>
+    <div class="panels-grid">
+      <article class="brief reveal" id="wochen-brief"></article>
+      <div class="punkte reveal" id="offene-punkte"></div>
+    </div>
+  </section>
+
+  <section class="story" id="pilot">
+    <h2 class="reveal">So bekommt Ihr Projekt ein Gedächtnis</h2>
+    <p class="story-sub reveal">Sie müssen nichts umstellen und nichts pflegen. Weiterleiten reicht.</p>
+    <div class="schritte">
+      <div class="schritt reveal">
+        <span class="schritt-nr">1</span>
+        <h3>Sie leiten weiter</h3>
+        <p>Mails, Dokumente, Fotos, WhatsApp-Verläufe — alles, was zum Projekt gehört, geht an eine Projekt-Adresse oder in einen Ordner. Mehr nicht.</p>
+      </div>
+      <div class="schritt reveal">
+        <span class="schritt-nr">2</span>
+        <h3>Wir bauen das Gedächtnis</h3>
+        <p>OsAI richtet die Akte ein: alles wird gelesen, geordnet und mit Quelle abgelegt. Ihre Daten bleiben in Deutschland.</p>
+      </div>
+      <div class="schritt reveal">
+        <span class="schritt-nr">3</span>
+        <h3>Sie fragen einfach</h3>
+        <p>„Haben wir das schriftlich?“ — Antwort in Sekunden, mit dem Original-Dokument als Beleg. Dazu Wochen-Brief und offene Punkte, automatisch.</p>
+      </div>
+    </div>
+    <div class="preis-zeile reveal">
+      <span>Pilot-Angebot:</span>
+      <b>990&nbsp;€ Einrichtung</b>
+      <span>+ 199&nbsp;€/Monat · 1–3 Projekte · Geld-zurück im 1.&nbsp;Monat</span>
+    </div>
+    <div class="cta-block reveal">
+      <a class="cta-haupt" href="https://cal.com/osai-solutions/erstgespraech" target="_blank" rel="noopener">📅 Erstgespräch buchen — 30 Minuten, kostenlos</a>
+      <p class="cta-neben">Oder erst mehr über OsAI erfahren: <a href="https://osai.solutions?utm_source=projekt-akte" target="_blank" rel="noopener">osai.solutions</a></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-note">Demo-Projekt von OsAI. <strong>Alle Personen, Firmen und Dokumente dieser Akte sind frei erfunden.</strong> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span>
+      <a class="footer-brand" href="https://osai.solutions?utm_source=projekt-akte" target="_blank" rel="noopener">
+        powered by <img src="assets/img/osai-logo.png" alt="OsAI" width="22" height="22"> <strong>OsAI</strong>
+      </a>
+    </div>
+  </footer>
+
+  <div class="sheet-hintergrund" id="sheet-hintergrund"></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Quelldokument">
+    <div class="sheet-griff"></div>
+    <div class="sheet-kopf" id="sheet-kopf"></div>
+    <div class="sheet-inhalt" id="sheet-inhalt"></div>
+  </div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

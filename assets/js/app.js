@@ -102,9 +102,15 @@
         "<div><b>Datum:</b> " + esc(a.datumText) + "</div><div><b>Betreff:</b> " + esc(a.betreff) + "</div></div>" +
         (a.body || []).map(segHtml).join("") + "</div>";
     } else { /* dokument / termin → Briefkopf-Optik */
+      var ort = a.absender === "hartmann" ? "Ludwigsburg" : "Remseck";
+      var metaTxt = a.meta || "";
+      /* Doppelte Nummern-Zeile vermeiden: erstes Meta-Segment steckt schon im Betreff → Meta weglassen */
+      var metaDoppelt = metaTxt && a.betreff &&
+        a.betreff.toLowerCase().indexOf(metaTxt.split(" · ")[0].toLowerCase()) !== -1;
       html += '<div class="dok">' + briefkopf(a) +
+        '<p class="dok-datum">' + ort + ", den " + esc(a.datumText.replace(/^\w+, /, "")) + "</p>" +
         (a.betreff ? '<div class="dok-betreff">' + esc(a.betreff) + "</div>" : "") +
-        '<p style="font-size:11px;color:#6b6254;margin:0 0 8px">' + esc(a.meta || "") + " · " + esc(a.datumText) + "</p>" +
+        (metaTxt && !metaDoppelt ? '<p class="dok-meta">' + esc(metaTxt) + "</p>" : "") +
         (a.body || []).map(segHtml).join("") +
         (a.foto ? fotoImg(a, "wa-foto") : "") + "</div>";
     }

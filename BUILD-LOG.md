@@ -52,3 +52,32 @@ Dokumente übersehen — dafür zwingt die Auto-Demo den Blick einmal nach links
 | Nano Banana 2 (Baustellenfotos, 1K, 4:3) | 6 Renders (1 Retake: UI-Overlay) | 0,30 € |
 | Gemini Flash Live-Calls (Tests) | ~6 Calls | ~0,01 € |
 | **Summe** | | **~0,31 €** |
+
+## Iteration 2 — externer Review (14 Findings) · 2026-06-11
+
+> Vorgänger-Session am Limit gestorben; Sichtung ergab: 1 sauberer Teil-Fix
+> (Chips-Wrapper in index.html), nichts Korruptes. Alle 14 Findings als
+> atomare Commits umgesetzt (e07b520…b8ef222).
+
+| # | Finding | Fix |
+|---|---|---|
+| 1 (P1) | Mobile Frage-Chips: nur 1 von 5 sichtbar | 2-zeiliger Umbruch + Peek (max-width 76%) + Fade-Kante (`hat-mehr` via JS) — alle 5 bei 390 px erreichbar, getestet |
+| 2–4 (P2) | 3 Fotos epochen-inkonsistent | NB2-Re-Gens: Leitungsfund (Stemmschlitz, verzinkte Leitung, Estrich), Alu (PVC-Alu-Adern + Kunststoff-Lüsterklemmen, keine Keramik), Material (GK + CW-Profile im Bestandsraum, kein Rohbau); auf ~150 KB komprimiert (Erst-Load-Budget) |
+| 5 (P2) | A11 08:42 unplausibel | → 15:20/15:21/15:47, Text „heute Morgen pünktlich angefangen“ |
+| 6 (P2) | Baujahr 1978 | → durchgängig **1972** (BRD-Alu plausibel) + neuer Konsistenz-Check „kein 1978“ |
+| 7 (P2) | A13 zu formal | Monteur-Bubble „Chef, schau dir das an — …“ + Weber-Bubble bündelt Formales (Anker/VDE bleiben) |
+| 8 (P3) | Desktop-Filter clippt 📷 Fotos | gleiche Fade-Kanten-Mechanik (`filter-zeile`) + Test |
+| 9 (P3) | A23-Einleitung | Vorbehalt nur R3; R1/R2 „bei Begehung bereits erledigt“ |
+| 10 (P3) | A19 Türmaß | „Türblatt 985 mm, lichte Breite ca. 94 cm“ |
+| 11 (P3) | Briefkopf | Ort/Datum rechtsbündig (`dok-datum`), doppelte AN-/SR-Nummern-Zeile entfällt (Meta-Dedupe) |
+| 12 (P3) | Impressum „du“ | → Sie |
+| 13 (P3) | /api/ask `model`-Feld | entfernt + Test |
+| 14 (P3) | Footer-Erklärung | Inline-Aufklapper „Wie funktioniert das?“ (3 Sätze, Datenschutz-Link, kein 404) |
+
+**Gates Iteration 2:** Konsistenz OK 2× · test_akte 27/27 2× · test_qa 35/35 2× ·
+test_polish 35/35 2× (neu: 5 Chips mobil, Filter-Scroll, Footer-Aufklapper) ·
+test_live 26/26 2× (neu: kein model-Feld) · E2E live 9/9 2×.
+Screenshots: `/tmp/pa-fix2/shot-*.png`.
+
+**Kosten Iteration 2:** 3 NB2-Renders (1K, 4:3, je 1 Versuch) ≈ 0,15 € ·
+Gemini-Flash-Testcalls (test_live 2× + E2E 2×) ≈ 0,01 € → **≈ 0,16 €**.

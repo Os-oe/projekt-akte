@@ -238,9 +238,9 @@
         foto: "assets/img/foto-demontage.jpg",
         fotoAlt: "Baustellenfoto: entkernter Empfangsbereich mit Bauschutt",
         chat: [
-          { wer: "weber", zeit: "08:42", t: "Guten Morgen Frau Dr. Hartmann, wir haben pünktlich angefangen. Empfang ist schon raus, läuft nach Plan. 👍", anchor: "a11-start" },
-          { wer: "weber", zeit: "08:43", foto: true, t: "📷 Foto: Empfangsbereich nach Demontage" },
-          { wer: "hartmann", zeit: "09:10", t: "Super, danke für das Foto! Sieht ja schon ganz anders aus 😊" }
+          { wer: "weber", zeit: "15:20", t: "Frau Dr. Hartmann, wir haben heute Morgen pünktlich angefangen — der Empfang ist schon komplett raus, läuft nach Plan. 👍", anchor: "a11-start" },
+          { wer: "weber", zeit: "15:21", foto: true, t: "📷 Foto: Empfangsbereich nach Demontage" },
+          { wer: "hartmann", zeit: "15:47", t: "Super, danke für das Foto! Sieht ja schon ganz anders aus 😊" }
         ]
       },
       {

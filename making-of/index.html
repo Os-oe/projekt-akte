@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Projekt-Akte — Making-of</title>
+<style>
+  @font-face { font-family: 'Fraunces'; src: url('Fraunces.ttf'); font-weight: 100 900; }
+  @font-face { font-family: 'Inter'; src: url('Inter-Regular.ttf'); font-weight: 400; }
+  @font-face { font-family: 'Inter'; src: url('Inter-Bold.ttf'); font-weight: 700; }
+  @font-face { font-family: 'Inter'; src: url('Inter-Black.ttf'); font-weight: 900; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #f6f1e4; --bg2: #f0e9d6; --panel: #fffdf6; --panel2: #faf5e8;
+    --line: #ded2b4; --ink: #2b2620; --dim: #5d5546; --faint: #8b8067;
+    --rot: #b91c1c; --rot-tief: #8f1616; --manila: #9a7b2e;
+  }
+  body { background: var(--bg); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; font-size: 12.5px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  .page { width: 210mm; height: 296mm; padding: 16mm 16mm; page-break-after: always; position: relative; overflow: hidden; background: var(--bg); display: flex; flex-direction: column; }
+  .page:last-child { page-break-after: avoid; }
+  .page.alt { background: var(--bg2); }
+  h2 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 25px; letter-spacing: -0.2px; margin-bottom: 13px; line-height: 1.18; }
+  h2 .nr { color: var(--rot); font-size: 11px; font-family: 'Inter'; font-weight: 900; letter-spacing: 2.6px; display: block; margin-bottom: 6px; }
+  p { margin-bottom: 9px; color: var(--dim); }
+  b { font-weight: 700; color: var(--ink); }
+  .accent { color: var(--rot); } .dimt { color: var(--faint); }
+  .footer { position: absolute; bottom: 9mm; left: 16mm; right: 16mm; display: flex; justify-content: space-between; align-items: center; color: var(--faint); font-size: 9.5px; border-top: 1px solid var(--line); padding-top: 7px; }
+  .footer img { height: 13px; vertical-align: -3px; margin-right: 6px; }
+  img.shot { width: 100%; border: 1px solid var(--line); border-radius: 8px; display: block; }
+  .cap { font-size: 9.4px; color: var(--faint); margin: 5px 0 0; line-height: 1.4; }
+
+  /* ── Cover ─────────────────────────────────────── */
+  .cover { justify-content: center; text-align: center; }
+  .cover .pres { font-size: 11px; font-weight: 700; color: var(--dim); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 18px; }
+  .cover .pres img { height: 24px; vertical-align: -7px; margin-right: 10px; }
+  .cover h1 { font-family: 'Fraunces', serif; font-weight: 600; font-size: 41px; line-height: 1.12; letter-spacing: -0.4px; color: var(--ink); margin-bottom: 14px; }
+  .cover h1 em { font-style: italic; color: var(--rot); }
+  .cover .sub { color: var(--dim); font-size: 12.6px; max-width: 86%; margin: 0 auto 18px; }
+  .cover img.heroshot { width: 76%; margin: 0 auto 20px; border-radius: 10px; border: 1px solid #cdbf9b; }
+  .cover .stats { display: flex; justify-content: center; gap: 12px; }
+  .cover .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 13px 14px; min-width: 106px; }
+  .cover .stat b { display: block; font-family: 'Fraunces', serif; font-weight: 600; font-size: 22px; color: var(--rot); margin-bottom: 4px; letter-spacing: -0.5px; }
+  .cover .stat span { font-size: 9.4px; color: var(--dim); line-height: 1.35; display: block; }
+
+  /* ── Prompt block ──────────────────────────────── */
+  pre.prompt { background: #fffdf6; color: #3a342a; border: 1px solid var(--line); border-radius: 10px; border-left: 5px solid var(--rot); padding: 20px 22px; font-family: Menlo, monospace; font-size: 10.6px; line-height: 1.8; white-space: pre-wrap; }
+  pre.prompt .hl { color: var(--rot); font-weight: 700; }
+
+  /* ── Phasen ────────────────────────────────────── */
+  .phase { display: flex; gap: 13px; margin-bottom: 11px; }
+  .phase .dot { flex: 0 0 30px; height: 30px; border-radius: 8px; background: var(--panel); border: 2px solid var(--rot); color: var(--rot); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; font-family: 'Fraunces', serif; }
+  .phase h3 { font-size: 12.5px; font-weight: 700; margin-bottom: 2px; }
+  .phase p { font-size: 11px; margin: 0 0 2px; }
+  .phase .gate { color: var(--manila); font-size: 10.2px; font-weight: 700; }
+
+  .callout { background: var(--panel); border: 1px solid var(--line); border-left: 5px solid var(--rot); border-radius: 8px; padding: 12px 15px; font-size: 11.2px; margin: 12px 0; color: var(--dim); }
+
+  table.skills { width: 100%; border-collapse: collapse; font-size: 10.4px; margin: 8px 0 10px; color: var(--dim); }
+  table.skills th { padding: 5px 10px 5px 0; border-bottom: 2px solid var(--rot); text-align: left; font-size: 9.8px; text-transform: uppercase; letter-spacing: .5px; color: var(--ink); }
+  table.skills td { padding: 5.5px 10px 5.5px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.skills td:first-child { white-space: nowrap; font-weight: 700; color: var(--rot); }
+
+  /* ── Pipeline-Visual ───────────────────────────── */
+  .strip { display: flex; gap: 7px; align-items: center; margin: 8px 0 2px; }
+  .strip .cell { flex: 1; position: relative; }
+  .strip .cell img { width: 100%; border-radius: 7px; border: 1px solid var(--line); display: block; }
+  .strip .cell.hot img { border-color: var(--rot); }
+  .strip .tag { position: absolute; top: 5px; left: 5px; background: rgba(43,38,32,.82); color: #f6f1e4; font-size: 7.6px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; padding: 2.5px 6px; border-radius: 4px; }
+  .strip .sarr { flex: 0 0 14px; text-align: center; color: var(--rot); font-weight: 900; font-size: 13px; }
+
+  .flow { display: flex; align-items: stretch; gap: 0; margin: 8px 0 2px; }
+  .flow .node { flex: 1; background: var(--panel); border: 1.5px solid var(--line); border-radius: 9px; padding: 10px 8px; text-align: center; display: flex; flex-direction: column; justify-content: flex-start; }
+  .flow .node .ico { font-family: 'Fraunces', serif; font-weight: 600; font-size: 15px; color: var(--rot); display: block; margin-bottom: 5px; }
+  .flow .node b { display: block; font-size: 9.8px; font-weight: 900; margin-bottom: 3px; }
+  .flow .node span { font-size: 8.5px; color: var(--faint); line-height: 1.4; display: block; }
+  .flow .node.hot { border-color: var(--rot); background: #fbeede; }
+  .flow .arr { flex: 0 0 15px; display: flex; align-items: center; justify-content: center; color: var(--rot); font-weight: 900; font-size: 12px; }
+
+  ul.biglist { padding-left: 17px; color: var(--dim); }
+  ul.biglist li { margin-bottom: 11px; font-size: 12.2px; }
+
+  .roomy { font-size: 13.2px; }
+  .roomy h2 { margin-bottom: 17px; }
+  .roomy .phase { margin-bottom: 19px; }
+  .roomy .phase .dot { flex: 0 0 32px; height: 32px; font-size: 15px; }
+  .roomy .phase p { font-size: 12.3px; }
+  .roomy .phase h3 { font-size: 14px; margin-bottom: 4px; }
+  .roomy .callout { font-size: 12.3px; padding: 15px 18px; margin-top: 16px; line-height: 1.6; }
+
+  .statstrip { display: flex; gap: 12px; margin-top: 16px; }
+  .statstrip .stat { flex: 1; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px 11px; text-align: center; }
+  .statstrip .stat b { display: block; font-family: 'Fraunces', serif; font-weight: 600; font-size: 21px; color: var(--rot); letter-spacing: -0.5px; margin-bottom: 3px; }
+  .statstrip .stat span { font-size: 9.4px; color: var(--dim); line-height: 1.35; display: block; }
+
+  .cta { text-align: center; margin-top: 20px; }
+  .cta .head { font-family: 'Fraunces', serif; font-weight: 600; font-size: 22px; letter-spacing: -0.2px; line-height: 1.35; margin-bottom: 12px; }
+  .cta .head em { font-style: italic; color: var(--rot); }
+  .cta .link { font-weight: 900; font-size: 15px; color: var(--rot); margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<!-- SEITE 1 — Cover -->
+<div class="page cover">
+  <div class="pres"><img src="osai-mark.png" alt="">OsAI präsentiert</div>
+  <h1>Kein Chatbot.<br>Ein <em>Projektgedächtnis.</em></h1>
+  <p class="sub">Wie <b>Claude Fable 5</b> — Anthropics neues KI-Modell — aus einem einzigen
+  Auftrag <b>„Projekt-Akte"</b> gebaut hat: eine Live-Demo, in der eine komplette, frei erfundene
+  Bau-Projektakte aus 24 Dokumenten befragbar wird. Die Antwort tippt sich ein, die Quellen
+  poppen auf — und das belegende Original-Dokument leuchtet in der Akte auf. Fragen ohne Beleg
+  bekommen eine ehrliche Antwort: „Dazu steht nichts in der Akte."
+  Autonom gebaut — inklusive Tests, Deployment und zwei Qualitäts-Reviews.</p>
+  <img class="heroshot" src="shots/cover.jpg" alt="Projekt-Akte — Akte links, Gedächtnis rechts">
+  <div class="stats">
+    <div class="stat"><b>1</b><span>Prompt</span></div>
+    <div class="stat"><b>24</b><span>Dokumente in der Akte — alle frei erfunden</span></div>
+    <div class="stat"><b>121</b><span>Checks, je 2× grün — lokal und live</span></div>
+    <div class="stat"><b>1</b><span>Abend — Idee bis Live-URL</span></div>
+  </div>
+  <div class="footer"><span><img src="osai-mark.png">OsAI · osai.solutions</span><span>Making-of · Juni 2026</span></div>
+</div>
+
+<!-- SEITE 2 — Vorgehensweise -->
+<div class="page roomy">
+  <h2><span class="nr">01 · VORGEHENSWEISE</span>Zwei Sessions, ein Workflow</h2>
+  <p><b>Kurz erklärt:</b> Ein KI-Agent ist mehr als ein Chatbot — er kann Dateien lesen und schreiben,
+  Programme ausführen, im Browser testen und deployen. Claude Code bietet dafür eine
+  <b class="accent">/goal</b>-Funktion: Man gibt ein Ziel vor, und der Agent arbeitet selbstständig
+  daran, bis es erreicht ist. Entscheidend ist, <i>was</i> man ihm als Ziel mitgibt.
+  Deshalb lief dieses Projekt in zwei getrennten Sessions:</p>
+
+  <div class="phase" style="margin-top:14px"><div class="dot">A</div><div>
+    <h3>Session 1 — Planen lassen</h3>
+    <p>Die Idee in einem Satz: <i>„Projektwissen steckt in Mails, WhatsApp und Köpfen — niemand
+    findet es wieder."</i> Zwei parallele Recherche-Stränge lieferten die Grundlage:
+    <b>Layout &amp; Choreografie</b> (wie zeigt man, dass eine Antwort <i>belegt</i> ist? Antwort:
+    Akte und Chat permanent nebeneinander, die Quelle leuchtet im Original auf) ·
+    <b>Bau-Fachlichkeit</b> (eine erfundene, aber handwerklich korrekte Projektakte nach
+    VOB/B — der Standard-Bauvertragsordnung: Bedenkenanzeige, Nachtrag, Abschlagsrechnungen,
+    Abnahmeprotokoll — damit die Akte nach echter Baustelle riecht). Verdichtet in zwei Dateien:</p>
+    <p style="margin-top:5px">→ <b class="accent">CONCEPT.md</b> — das eingefrorene Konzept: die 24 Dokumente,
+    die Frage-Choreografie, die Ehrlichkeits-Regel, Schutzschicht, Phasenplan mit Quality-Gates<br>
+    → <b class="accent">GOAL-PROMPT</b> — der fertige, präzise Auftrag für die Umsetzung</p>
+  </div></div>
+
+  <div class="phase"><div class="dot">B</div><div>
+    <h3>Session 2 — Bauen lassen</h3>
+    <p>In einer <b>frischen Session</b> wurde der Prompt per <b class="accent">/goal</b> übergeben. Der Agent
+    las zuerst das Konzept, dann arbeitete er <b>sechs Phasen</b> ab — Akte, Frage-Choreografie,
+    Live-Pfad, Polish, Deployment, Selbstkritik — und testete sich nach jeder Phase selbst im
+    echten Browser. Bis zur Live-URL: <b>null menschliche Eingriffe</b>.</p>
+  </div></div>
+
+  <div class="callout"><b class="accent">Warum die Trennung?</b> Planung und Umsetzung sind verschiedene Denkmodi.
+  Die Planungs-Session darf diskutieren, recherchieren, verwerfen. Die Bau-Session bekommt ein
+  eingefrorenes, recherchiertes Konzept — und kann dadurch lange autonom laufen, ohne sich zu
+  verlaufen. Das Konzept ist der Vertrag: „Bei Widerspruch gilt das Konzept" steht wörtlich im Prompt.</div>
+  <div class="statstrip">
+    <div class="stat"><b>2</b><span>Recherche-Stränge in der Plan-Session</span></div>
+    <div class="stat"><b>2</b><span>Dateien als Vertrag — Konzept + Prompt</span></div>
+    <div class="stat"><b>6</b><span>Bau-Phasen mit Quality-Gates</span></div>
+    <div class="stat"><b>0</b><span>Eingriffe bis zur Live-URL</span></div>
+  </div>
+  <div class="footer"><span><img src="osai-mark.png">OsAI · osai.solutions</span><span>02</span></div>
+</div>
+
+<!-- SEITE 3 — Der Prompt -->
+<div class="page alt roomy">
+  <h2><span class="nr">02 · DER AUFTRAG</span>Ein einziger Prompt</h2>
+  <p>Kein Lastenheft, kein Sprint-Planning, kein Entwicklerteam. Der <b class="accent">/goal</b>-Auftrag
+  aus Session 2 (gekürzt — die Struktur ist das Entscheidende). Erste Anweisung: das recherchierte
+  Konzept aus Session 1 lesen.</p>
+  <pre class="prompt"><span class="hl">Baue „Projekt-Akte"</span> — eine öffentliche Demo: eine komplette,
+frei erfundene Projektakte „Praxisumbau Dr. Hartmann" —
+24 Dokumente aus 10 Wochen: Mails, Angebote, WhatsApp-Fotos,
+Protokolle — die der Besucher befragen kann. Das vollständige
+Konzept liegt in CONCEPT.md — LIES ES ZUERST KOMPLETT;
+bei Widerspruch gilt das Konzept.
+
+<span class="hl">KERN:</span> Akte links, Gedächtnis rechts. Die Antwort tippt sich
+ein, Quellen-Chips poppen auf — und in der Akte leuchtet die
+exakte Passage des Original-Dokuments auf. Eiserne Regel: Es
+wird NUR beantwortet, was die Akte belegt — eine kuratierte
+Frage antwortet bewusst „Dazu steht nichts in der Akte."
+Dazu: Wochen-Brief + offene Punkte (automatisch geführt) und
+ein Live-Pfad für frei getippte Fragen mit Schutzschicht
+(Tages-Limits, nichts wird gespeichert).
+
+<span class="hl">PHASEN MIT GATES</span> (nacheinander, Gates ernst nehmen):
+1. Akte + Dokumente   ⚑ Summen, Daten und Paragrafen aller
+                        24 Dokumente skript-geprüft konsistent
+2. Frage-Choreografie ⚑ richtige Quelle je Frage, Passage
+                        leuchtet nachweisbar, Auto-Demo genau 1×
+3. Live-Pfad + Panels ⚑ Antworten nur mit Beleg aus der Akte,
+                        Limits greifen
+4. Polish             ⚑ Mobil 390 px + „würde ein Geschäfts-
+                        führer das sofort verstehen?"
+5. Ship               ⚑ live 2× grün inkl. echter Frage
+6. Excellence-Pass    ⚑ 10 Schwächen finden, Top-5 fixen
+
+<span class="hl">ERFOLGSKRITERIUM:</span> Ein Geschäftsführer tippt auf „Haben wir
+die Bedenken schriftlich angezeigt?", sieht die Antwort MIT dem
+aufleuchtenden Original-Dokument — und denkt: Das will ich für
+MEINE Projekte. Wo ist der Unterschied zu ChatGPT? Ah: Es
+belegt alles. Termin.</pre>
+  <p style="margin-top:13px">Der Rest — jede Architektur-Entscheidung, jede Zeile Code, jeder Test,
+  jeder Commit — kam von der KI selbst.</p>
+  <div class="footer"><span><img src="osai-mark.png">OsAI · osai.solutions</span><span>03</span></div>
+</div>
+
+<!-- SEITE 4 — Die Phasen -->
+<div class="page">
+  <h2><span class="nr">03 · DER BAU</span>Sechs Phasen — und zwei Qualitätszyklen</h2>
+  <div class="phase"><div class="dot">1</div><div>
+    <h3>Akte + Dokumente — die fiktive Baustelle zuerst</h3>
+    <p>24 Dokumente einer handwerklich korrekten VOB/B-Akte: vom Angebot über die Bedenkenanzeige
+    zur Alt-Elektrik bis zur Schlussrechnung. Ein Prüf-Skript mit 30 Checks sicherte jede Summe, jedes
+    Datum und jeden Paragrafen quer über alle Dokumente — <b>bevor</b> die erste Oberfläche entstand.</p>
+    <p class="gate">⚑ Gate bestanden (2× grün): Akte widerspruchsfrei — die späteren Phasen fanden null Inhaltsfehler</p>
+  </div></div>
+  <div class="phase"><div class="dot">2</div><div>
+    <h3>Frage-Choreografie — der Geld-Moment</h3>
+    <p>Frage antippen → Antwort tippt sich ein → Quellen-Chips poppen gestaffelt auf → die Akte scrollt
+    zum Dokument und die exakte Passage pulsiert gelb. Dazu die Auto-Demo: Die Seite stellt die erste
+    Frage von selbst — und die ehrliche Grenze: keine Quelle, keine Behauptung.</p>
+    <p class="gate">⚑ Gate (2× grün): jede Frage belegt mit dem richtigen Dokument, Aufleuchten im Test nachgewiesen</p>
+  </div></div>
+  <div class="phase"><div class="dot">3</div><div>
+    <h3>Live-Pfad + Panels — frei fragen, automatisch berichten</h3>
+    <p>Frei getippte Fragen werden live aus der Akte beantwortet — Antworten ohne Beleg ersetzt der
+    Server konsequent durch „Dazu steht nichts in der Akte". Dazu Wochen-Brief und Offene-Punkte-Liste,
+    beide automatisch geführt, plus Schutz: Tages-Limits, nichts wird gespeichert.</p>
+    <p class="gate">⚑ Gate (2× grün) inkl. echter Live-Antworten: nur Belegtes, Limits greifen, alle Baustellenfotos faktengecheckt</p>
+  </div></div>
+  <div class="phase"><div class="dot">4</div><div>
+    <h3>Polish — „würde ein Geschäftsführer das sofort verstehen?"</h3>
+    <p>Kein einziger Technik-Begriff auf der Seite (skript-geprüft) — stattdessen „liest mit, merkt sich
+    alles, antwortet mit Quelle". Mobil 390 px ohne Überlauf, Impressum, Datenschutz — und ein
+    dokumentiertes Urteil gegen genau diese Frage. Antwort: ja.</p>
+    <p class="gate">⚑ Gate (2× grün): Smartphone-Breite sauber, Erst-Load unter dem Budget</p>
+  </div></div>
+  <div class="phase"><div class="dot">5</div><div>
+    <h3>Ship — live in der echten Welt</h3>
+    <p>GitHub-Repo, Vercel-Hosting, eigene Domain, Schlüssel-Verwaltung — komplette Deploy-Kette vom Agenten.</p>
+    <p class="gate">⚑ Gate: Suiten 2× grün gegen projekt-akte.demo.osai.solutions — inkl. echter frei getippter Frage über die Live-API</p>
+  </div></div>
+  <div class="phase"><div class="dot">6</div><div>
+    <h3>Excellence-Pass — der Agent kritisiert sich selbst</h3>
+    <p>Auftrag im Prompt: 10 eigene Schwächen finden, die wichtigsten fixen. Die zwei größten: Die
+    Auto-Demo startete nach Stoppuhr — mobil lief der Aha-Moment unsichtbar unterhalb des Bildschirms ab;
+    jetzt startet sie erst, wenn der Chat wirklich im Blick ist. Und die Seite wurde auf
+    <b>etwa die Hälfte</b> abgespeckt (1.096 → ~650 KB Erst-Load).</p>
+    <p class="gate">⚑ Gate: Findings dokumentiert, Top-Fixes umgesetzt, Suiten erneut 2× grün</p>
+  </div></div>
+
+  <div class="callout" style="margin-top:4px"><b class="accent">Danach: der externe Blick.</b>
+  Auf den Selbst-Review folgte ein unabhängiger <b>Fresh-Eyes-Review</b> ohne Bau-Kontext (Urteil: 8/10,
+  14 Findings — von Frage-Chips, die auf dem Smartphone halb versteckt waren, bis zu einem Briefkopf-Detail).
+  Alle 14 wurden gefixt und live nachgetestet. Erst dann: final.</div>
+  <div class="callout"><b class="accent">Der Moment, der hängen bleibt:</b> Der Review las die erfundene
+  Akte wie ein <i>Bausachverständiger</i> — und stellte fest, dass die WhatsApp-Baustellenfotos die
+  <b>falsche Gebäude-Epoche</b> zeigten: Gründerzeit-Keller mit Ziegel und Keramik statt 70er-Jahre-Bürobau.
+  Drei Fotos wurden epochenkorrekt neu generiert — und das Baujahr der Praxis durchgängig auf <b>1972</b>
+  gezogen, damit die Alu-Verkabelung, um die sich die halbe Akte dreht, historisch stimmt. Eine fiktive
+  Akte, die einer Fachprüfung standhält: Genau das ist der Anspruch.</div>
+  <div class="statstrip" style="margin-top:10px">
+    <div class="stat"><b>121</b><span>Checks, je 2× grün — lokal und live</span></div>
+    <div class="stat"><b>14</b><span>Findings im externen Review — alle gefixt</span></div>
+    <div class="stat"><b>8/10</b><span>Fresh-Eyes-Urteil ohne Bau-Kontext</span></div>
+    <div class="stat"><b>~650 KB</b><span>Erst-Load — vorher 1.096 KB</span></div>
+  </div>
+  <div class="footer"><span><img src="osai-mark.png">OsAI · osai.solutions</span><span>04</span></div>
+</div>
+
+<!-- SEITE 5 — Skills & Pipeline -->
+<div class="page alt">
+  <h2><span class="nr">04 · WERKZEUGE</span>Skills &amp; die Beleg-Pipeline</h2>
+  <p>Der Agent griff auf vorbereitete <b>Skills</b> zurück — wiederverwendbare Fähigkeiten mit klaren
+  Regeln (welches Werkzeug, welche Kosten, welche Qualitätskriterien). Der Lauf war komplett autonom:</p>
+  <table class="skills">
+    <tr><th>Skill / Werkzeug</th><th>Aufgabe im Projekt</th></tr>
+    <tr><td>Recherche-Subagenten</td><td>2 Stränge parallel in der Plan-Session: Layout &amp; Choreografie („Wie zeigt man <i>belegt</i>?") · Bau-Fachlichkeit (VOB/B-Abläufe, damit die Akte nach echter Baustelle riecht)</td></tr>
+    <tr><td>Prüf-Skript für die Akte</td><td>30 automatische Checks über alle 24 Dokumente — jede Summe, jedes Datum, jeder Paragraf quer-geprüft, bevor die erste Oberfläche entstand</td></tr>
+    <tr><td>Bild-KI: Baustellenfotos</td><td>WhatsApp-Fotos der fiktiven Baustelle — jedes gegen den Nachrichtentext faktengecheckt (sieht man die Alu-Adern wirklich?) und gegen die Gebäude-Epoche (Baujahr 1972)</td></tr>
+    <tr><td>Quellen-Pflicht</td><td>Jede Antwort nennt Dokument + Datum. Ohne Beleg antwortet das System „Dazu steht nichts in der Akte" — die Regel ist im Code verankert, nicht nur im Text</td></tr>
+    <tr><td>Schutzschicht</td><td>Tages-Limits für frei getippte Fragen, nichts wird gespeichert — die fünf Beispielfragen verlassen den Browser gar nicht erst</td></tr>
+    <tr><td>webapp-testing (Playwright)</td><td>Selbsttests im echten Browser: 121 Checks, je 2× grün — bis hin zu „leuchtet die Passage wirklich auf?"</td></tr>
+    <tr><td>Fresh-Eyes-Review</td><td>Unabhängiger zweiter Blick ohne Bau-Kontext: 8/10, 14 Findings — darunter der Epochen-Fund bei den Baustellenfotos</td></tr>
+    <tr><td>GitHub + Vercel</td><td>Repo, Hosting, eigene Domain, Schlüssel-Verwaltung — komplette Deploy-Kette vom Agenten eingerichtet</td></tr>
+  </table>
+
+  <p style="margin-top:2px"><b>Die KI-Baustellenfotos</b> — vier Momente derselben fiktiven Baustelle,
+  epochenkorrekt für ein Gebäude von 1972, jedes gegen den Akteninhalt geprüft:</p>
+  <div class="strip">
+    <div class="cell"><span class="tag">W3 · Demontage</span><img src="shots/foto-demontage.jpg"></div>
+    <div class="sarr">→</div>
+    <div class="cell hot"><span class="tag">W4 · Leitungsfund</span><img src="shots/foto-leitungsfund.jpg"></div>
+    <div class="cell hot"><span class="tag">W4 · Alu-Verkabelung</span><img src="shots/foto-alu.jpg"></div>
+    <div class="sarr">→</div>
+    <div class="cell"><span class="tag">W10 · Fertig</span><img src="shots/foto-fertig.jpg"></div>
+  </div>
+  <p class="cap" style="margin-bottom:8px">So läuft jede Frage an die Akte — vom Antippen bis zum Beleg:</p>
+  <div class="flow">
+    <div class="node"><span class="ico">①</span><b>Die Akte</b><span>24 Dokumente, von einem Skript auf Widerspruchsfreiheit geprüft</span></div>
+    <div class="arr">→</div>
+    <div class="node"><span class="ico">②</span><b>Die Frage</b><span>Antwort entsteht nur aus dem, was in der Akte steht</span></div>
+    <div class="arr">→</div>
+    <div class="node hot"><span class="ico">③</span><b>Der Beleg</b><span>Quellen-Chips mit Dokument + Datum — die Original-Passage leuchtet auf</span></div>
+    <div class="arr">→</div>
+    <div class="node hot"><span class="ico">④</span><b>Die Grenze</b><span>keine Quelle? Dann ehrlich: „Dazu steht nichts in der Akte."</span></div>
+    <div class="arr">→</div>
+    <div class="node"><span class="ico">⑤</span><b>Der Schutz</b><span>Tages-Limits, nichts wird gespeichert — Daten bleiben in Deutschland</span></div>
+  </div>
+  <p class="cap" style="text-align:center;margin-top:6px">Produktionsaufwand: 24 Dokumente, 8 KI-Fotos, 1 Abend.</p>
+  <div class="footer"><span><img src="osai-mark.png">OsAI · osai.solutions</span><span>05</span></div>
+</div>
+
+<!-- SEITE 6 — Das Ergebnis -->
+<div class="page">
+  <h2><span class="nr">05 · DAS ERGEBNIS</span>Eine Akte, die antwortet — mit Beleg</h2>
+  <div style="display:flex;flex-direction:column;flex:1;justify-content:space-evenly;padding-bottom:10mm">
+    <div style="display:flex;gap:12px;align-items:flex-start">
+      <div style="flex:2">
+        <img class="shot" src="shots/puls.jpg"><div class="cap">Der Geld-Moment: „Was war im Nachtrag N1?" — die Antwort nennt Summe und Auftrag, rechts poppen die Quellen-Chips, links pulsiert die Nachtragssumme gelb im Original-Dokument</div>
+      </div>
+      <div style="flex:0.59">
+        <img class="shot" src="shots/sheet.jpg"><div class="cap" style="text-align:center">Mobil (390 px): Quelle antippen → das Original-Dokument schiebt sich als Karte ins Bild, die belegte Passage markiert</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;align-items:flex-start">
+      <div style="flex:1.5">
+        <img class="shot" src="shots/brief.jpg"><div class="cap">Es beantwortet nicht nur Fragen: Wochen-Brief und Offene-Punkte-Liste schreibt das Projektgedächtnis von selbst — jede Zeile mit Quellen-Chip</div>
+      </div>
+      <div style="flex:1">
+        <img class="shot" src="shots/ehrlich.jpg"><div class="cap">Die ehrliche Grenze: „Wurde die Schlussrechnung schon bezahlt?" — „Dazu steht nichts in der Akte." Keine Quelle, keine Behauptung</div>
+      </div>
+      <div style="flex:0.72">
+        <img class="shot" src="shots/filter.jpg"><div class="cap" style="text-align:center">Die Akte als Zeitstrahl, gefiltert auf 📷 Fotos — die KI-Baustellenbilder hängen an den WhatsApp-Nachrichten</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span><img src="osai-mark.png">OsAI · osai.solutions</span><span>06</span></div>
+</div>
+
+<!-- SEITE 7 — Business + CTA -->
+<div class="page alt">
+  <h2><span class="nr">06 · UND JETZT SIE</span>Was heißt das für Ihre Projekte?</h2>
+  <p>Die Demo zeigt eine erfundene Bau-Akte — das Prinzip funktioniert für jedes Unternehmen mit
+  Projekten und Kundenkommunikation: Agenturen, Planungsbüros, Hausverwaltungen, Handwerksbetriebe.
+  <b>Mails, Dokumente und Fotos rein — Antworten mit Beleg raus.</b> Vier Anwendungsfälle:</p>
+  <ul class="biglist" style="margin:14px 0 4px">
+    <li><b class="accent">„Wo ist das aktuelle Angebot?"</b> — der teuerste Satz im Mittelstand.
+    Das Projektgedächtnis antwortet in Sekunden: Datei, Versionsstand, Quelle — statt
+    20 Minuten Postfach-Archäologie pro Vorgang.</li>
+    <li><b class="accent">Onboarding &amp; Vertretung in 10 Minuten</b> — neue Mitarbeiter oder die
+    Urlaubsvertretung fragen sich in das Projekt ein, statt zwei Tage zu suchen. Das Wissen
+    steckt nicht mehr nur in Köpfen, die gerade am Strand liegen.</li>
+    <li><b class="accent">Der Wochen-Brief kommt von selbst</b> — was ist passiert, was steht an,
+    wer wartet auf wen: jede Woche automatisch, jede Zeile mit Quelle. Wert entsteht,
+    ohne dass irgendjemand etwas pflegen muss.</li>
+    <li><b class="accent">Offene Punkte führen sich automatisch</b> — Zusagen, Fristen und Restpunkte
+    werden aus der Kommunikation gezogen und mit Beleg gelistet. Nichts fällt mehr durchs
+    Raster, weil es „nur in einer Mail stand".</li>
+  </ul>
+  <div class="callout"><b class="accent">Das Pilot-Angebot „Projektgedächtnis":</b>
+  <b>990&nbsp;€ Einrichtung + 199&nbsp;€/Monat</b> — 1–3 Projekte, Frage-Antwort mit Quellen-Pflicht,
+  wöchentlicher Projekt-Brief, Offene-Punkte-Liste. Geld-zurück im 1.&nbsp;Monat. Sie müssen nichts
+  umstellen und nichts pflegen: Weiterleiten reicht — und Ihre Daten bleiben in Deutschland.
+  Alle Details stehen im Pilot-Einseiter, den wir auf Anfrage mitschicken — oder wir gehen sie
+  im Erstgespräch gemeinsam durch.</div>
+  <div class="cta" style="margin-top:auto;margin-bottom:14mm">
+    <p class="head">Stellen Sie der Akte eine Frage —<br><em>und dann reden wir über Ihre Projekte.</em></p>
+    <p class="link">projekt-akte.demo.osai.solutions</p>
+    <p style="margin-bottom:5px"><b>30-Minuten-Erstgespräch</b> — unverbindlich, direkt buchbar:</p>
+    <p class="link" style="font-size:12.5px">cal.com/osai-solutions/erstgespraech</p>
+    <p style="margin-top:16px"><img src="osai-mark.png" style="height:40px;vertical-align:middle;margin-right:13px"><span style="font-weight:900;font-size:25px;vertical-align:middle;letter-spacing:-0.5px">OsAI</span></p>
+    <p class="dimt" style="font-size:11px;margin-top:6px">osai.solutions · Osman Öztopcu</p>
+  </div>
+  <div class="footer"><span><img src="osai-mark.png">OsAI · osai.solutions</span><span>07</span></div>
+</div>
+
+</body>
+</html>

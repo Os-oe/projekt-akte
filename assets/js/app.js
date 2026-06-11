@@ -354,6 +354,18 @@
       return '<button class="frage-chip" data-chip="' + c.id + '">' + esc(c.frage) + "</button>";
     }).join("");
   }
+
+  /* Fade-Kante an horizontalen Scroll-Zeilen: zeigt an, dass rechts mehr liegt */
+  function fadeKante(scroller) {
+    var zeile = scroller.parentElement;
+    if (!zeile || !zeile.classList.contains("scroll-zeile")) return;
+    function update() {
+      zeile.classList.toggle("hat-mehr", scroller.scrollWidth - scroller.clientWidth - scroller.scrollLeft > 8);
+    }
+    scroller.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  }
   function setEingabe(an) {
     chipsEl.querySelectorAll(".frage-chip").forEach(function (b) { b.disabled = !an; });
     feld.disabled = !an;
@@ -517,6 +529,7 @@
   renderTimeline();
   renderChips();
   renderPanels();
+  fadeKante(chipsEl);
   addMsg("bot", "Guten Tag! Ich bin das Gedächtnis dieser Akte: 24 Dokumente aus 10 Wochen Praxisumbau — Mails, Angebote, WhatsApp-Fotos, Protokolle. Fragen Sie mich etwas. Ich antworte nur, was ich belegen kann." +
     '<span class="msg-spur">⚖️ Demo — alle Personen, Firmen und Dokumente sind frei erfunden.</span>');
 

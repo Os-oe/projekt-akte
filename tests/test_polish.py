@@ -107,6 +107,25 @@ def main():
         overflow3 = m.evaluate("document.documentElement.scrollWidth - document.documentElement.clientWidth")
         check("390px: Bottom-Sheet ohne Overflow", overflow3 <= 0, str(overflow3))
 
+        # --- Mobile: alle 5 Frage-Chips erreichbar (Scroll + Peek + Fade-Kante)
+        m.evaluate("document.querySelector('#sheet .sheet-zu').click()")
+        check("390px: 5 Frage-Chips gerendert", m.evaluate("document.querySelectorAll('.frage-chip').length") == 5)
+        check("390px: Chips-Zeile scrollbar (Inhalt breiter als Sichtfenster)",
+              m.evaluate("(s => s.scrollWidth > s.clientWidth)(document.getElementById('frage-chips'))"))
+        check("390px: Fade-Kante sichtbar (hat-mehr) am Zeilenanfang",
+              m.evaluate("document.querySelector('.chips-zeile').classList.contains('hat-mehr')"))
+        m.evaluate("(s => s.scrollLeft = s.scrollWidth)(document.getElementById('frage-chips'))")
+        m.wait_for_timeout(250)
+        chip5_sichtbar = m.evaluate("""() => {
+          const s = document.getElementById('frage-chips');
+          const c = s.querySelector('[data-chip="c5"]');
+          const sr = s.getBoundingClientRect(), cr = c.getBoundingClientRect();
+          return cr.left >= sr.left - 2 && cr.right <= sr.right + 2 && cr.width > 40;
+        }""")
+        check("390px: Chip 5 nach Scroll voll im Sichtfenster", chip5_sichtbar)
+        check("390px: Fade-Kante verschwindet am Zeilenende",
+              m.evaluate("!document.querySelector('.chips-zeile').classList.contains('hat-mehr')"))
+
         browser.close()
     if httpd: httpd.shutdown()
     failed = [n for n, ok in CHECKS if not ok]

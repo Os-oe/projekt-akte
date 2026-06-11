@@ -250,6 +250,14 @@ tr.passage-glow td { animation: none; background: #ffe9a8; transition: backgroun
 /* Frage-Chips + Eingabe */
 .chat-fuss { border-top: 1px solid var(--linie); background: #fff; padding: 10px 14px 13px; }
 .fuss-label { font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--tinte-soft); margin: 2px 0 7px; }
+/* Scroll-Zeile mit Fade-Kante: signalisiert „rechts gibt es mehr“ (Klasse hat-mehr via JS) */
+.scroll-zeile { position: relative; }
+.scroll-zeile::after {
+  content: ""; position: absolute; top: 0; right: 0; bottom: 0; width: 42px;
+  pointer-events: none; opacity: 0; transition: opacity .25s;
+}
+.scroll-zeile.hat-mehr::after { opacity: 1; }
+.chips-zeile::after { background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff 80%); bottom: 6px; }
 .frage-chips { display: flex; gap: 7px; overflow-x: auto; padding-bottom: 6px; scrollbar-width: none; }
 .frage-chips::-webkit-scrollbar { display: none; }
 .frage-chip {
@@ -380,6 +388,8 @@ tr.passage-glow td { animation: none; background: #ffe9a8; transition: backgroun
   .panels-grid { grid-template-columns: 1fr; }
   .schritte { grid-template-columns: 1fr; }
   .msg { max-width: 92%; }
+  /* Frage-Chips: 2-zeilig umbrechend + Peek auf den nächsten Chip — alle 5 erreichbar */
+  .frage-chip { white-space: normal; text-align: left; max-width: 76%; line-height: 1.35; }
 }
 @media (max-width: 480px) {
   .topbar-cta { font-size: 12.5px; padding: 8px 12px; }

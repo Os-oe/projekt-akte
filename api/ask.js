@@ -149,7 +149,7 @@ module.exports = async function handler(req, res) {
       const roh = await callGemini(apiKey, model, frage);
       const antwort = bereinige(roh);
       if (!antwort) throw new Error("Gemini: unbrauchbares Antwort-Objekt");
-      return res.status(200).json({ ok: true, model, antwort });
+      return res.status(200).json({ ok: true, antwort });
     } catch (e) {
       lastErr = e;
       if (e.status && e.status < 500 && e.status !== 429 && e.status !== 404) break;

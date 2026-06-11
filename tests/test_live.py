@@ -78,6 +78,7 @@ def main():
         # --- Fixture-Frage → Schema + Quellen aus dem Korpus (echter Gemini-Call)
         status, body = post_ask(BASE, "Wie hoch war die zweite Abschlagsrechnung und wann wurde sie gestellt?", origin=BASE)
         check("Fixture: HTTP 200 + ok", status == 200 and body.get("ok") is True, f"{status} {str(body)[:200]}")
+        check("Fixture: kein model-Feld in der Response", "model" not in body, str(sorted(body.keys())))
         antwort = body.get("antwort") or {}
         check("Fixture: Schema {antwort, quellen[], unbekannt}",
               isinstance(antwort.get("antwort"), str) and isinstance(antwort.get("quellen"), list)

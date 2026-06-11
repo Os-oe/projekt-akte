@@ -376,7 +376,7 @@
           { wer: "weber", zeit: "07:59", foto: true, t: "📷 Foto: Materiallieferung Trockenbau im Empfangsbereich" },
           { wer: "weber", zeit: "12:31", t: "Frage zur Tür vom Flur zum Empfang: Die Zarge, die der Lieferant vorschlägt, ergäbe 88,5 cm lichte Breite. Reicht Ihnen das?" },
           { wer: "hartmann", zeit: "12:48", t: "Die Tür muss barrierefrei sein — was ist da vorgeschrieben?" },
-          { wer: "weber", zeit: "13:05", t: "Für barrierefreie Praxen gilt DIN 18040-1: mindestens 90 cm lichte Durchgangsbreite. 88,5 cm reicht also NICHT — wir bestellen das nächstgrößere Zargenmaß, lichte Breite dann 98,5 cm. Kein Aufpreis, nur 3 Tage Lieferzeit.", anchor: "a19-tuer" },
+          { wer: "weber", zeit: "13:05", t: "Für barrierefreie Praxen gilt DIN 18040-1: mindestens 90 cm lichte Durchgangsbreite. 88,5 cm reicht also NICHT — wir bestellen die nächstgrößere Zarge: Türblatt 985 mm, lichte Breite ca. 94 cm. Kein Aufpreis, nur 3 Tage Lieferzeit.", anchor: "a19-tuer" },
           { wer: "hartmann", zeit: "13:12", t: "Perfekt, danke fürs Mitdenken! 👍" }
         ]
       },

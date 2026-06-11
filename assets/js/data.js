@@ -265,9 +265,9 @@
         foto: "assets/img/foto-alu.jpg",
         fotoAlt: "Baustellenfoto: geöffnete Verteilerdose mit Aluminium-Adern",
         chat: [
-          { wer: "weber", zeit: "10:12", t: "Befund ist da: Unser Elektromeister hat die Verteilerdosen geöffnet — es ist durchgehend Aluminium-Verkabelung von 1972. Entspricht nicht den heutigen Anforderungen der DIN VDE 0100, an den Klemmstellen besteht Brandgefahr. An diesen Bestand dürfen wir die neue Praxiselektrik nicht anschließen.", anchor: "a13-befund" },
-          { wer: "weber", zeit: "10:13", foto: true, t: "📷 Foto: geöffnete Verteilerdose, Alu-Adern sichtbar" },
-          { wer: "weber", zeit: "10:15", t: "Sie bekommen dazu heute noch unsere schriftliche Bedenkenanzeige und bis Anfang nächster Woche ein Nachtragsangebot für die komplette Neuverkabelung." },
+          { wer: "monteur", zeit: "10:12", t: "Chef, schau dir das an — Alu-Leitungen, alles original 70er. Da geht nix mit dranklemmen, das wird ein Fass." },
+          { wer: "monteur", zeit: "10:13", foto: true, t: "📷 Foto: geöffnete Verteilerdose, Alu-Adern sichtbar" },
+          { wer: "weber", zeit: "10:21", t: "Frau Dr. Hartmann, der Befund ist eindeutig: durchgehend Aluminium-Verkabelung von 1972. Entspricht nicht den heutigen Anforderungen der DIN VDE 0100, an den Klemmstellen besteht Brandgefahr — an diesen Bestand dürfen wir die neue Praxiselektrik nicht anschließen. Sie bekommen dazu heute noch unsere schriftliche Bedenkenanzeige und Anfang nächster Woche ein Nachtragsangebot für die komplette Neuverkabelung.", anchor: "a13-befund" },
           { wer: "hartmann", zeit: "11:02", t: "Verstanden. Dann lieber jetzt richtig machen — ich warte auf Ihr Angebot." }
         ]
       },

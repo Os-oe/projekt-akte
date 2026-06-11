@@ -86,7 +86,7 @@
     if (a.typ === "whatsapp") {
       html += '<div class="wa">';
       (a.chat || []).forEach(function (m) {
-        var wer = m.wer === "weber" ? "Weber Ausbau · Thomas" : "Dr. Hartmann";
+        var wer = { weber: "Weber Ausbau · Thomas", monteur: "Weber Ausbau · Micha (Elektro)" }[m.wer] || "Dr. Hartmann";
         var inner = m.foto && a.foto ? fotoImg(a, "wa-foto") + '<em style="font-size:10.5px;color:#8a8170">' + esc(m.t) + "</em>"
           : (m.anchor ? '<span class="passage" data-anchor="' + m.anchor + '">' + esc(m.t) + "</span>" : esc(m.t));
         html += '<div class="wa-bubble ' + m.wer + '"><div class="wa-wer">' + wer + "</div>" + inner +

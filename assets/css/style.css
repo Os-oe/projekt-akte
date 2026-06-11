@@ -173,6 +173,8 @@ button { font-family: inherit; cursor: pointer; }
 .wa { background: #e7e1d3; border-radius: 8px; padding: 10px; }
 .wa-bubble { max-width: 88%; padding: 7px 10px; border-radius: 10px; font-size: 12.8px; margin: 6px 0; position: relative; white-space: pre-line; box-shadow: 0 1px 1px rgba(0, 0, 0, .08); }
 .wa-bubble.weber { background: #fff; border-top-left-radius: 3px; }
+.wa-bubble.monteur { background: #fff; border-top-left-radius: 3px; }
+.wa-bubble.monteur .wa-wer { color: var(--gold); }
 .wa-bubble.hartmann { background: #dcf3c8; margin-left: auto; border-top-right-radius: 3px; }
 .wa-wer { font-size: 10.5px; font-weight: 700; color: var(--osai); margin-bottom: 2px; }
 .wa-bubble.hartmann .wa-wer { color: #1f7a4d; }

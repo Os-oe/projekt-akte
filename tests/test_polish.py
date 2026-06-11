@@ -70,7 +70,17 @@ def main():
         # --- Footer-Links + Rechtsseiten erreichbar
         check("Footer verlinkt Impressum + Datenschutz",
               page.locator('.footer a[href="impressum.html"]').count() == 1 and
-              page.locator('.footer a[href="datenschutz.html"]').count() == 1)
+              page.locator('.footer a[href="datenschutz.html"]').count() >= 1)
+        # --- Footer: „Wie funktioniert das?“-Aufklapper (inline, kein 404-Link)
+        check("Footer: Aufklapper „Wie funktioniert das?“ vorhanden",
+              page.locator(".footer-erklaer summary").count() == 1 and
+              "Wie funktioniert das?" in page.text_content(".footer-erklaer summary"))
+        erkl = page.text_content(".footer-erklaer")
+        check("Footer-Erklärung: liest mit / merkt sich / Quelle + KI-Dienst-Passus",
+              "liest" in erkl and "merkt sich" in erkl and "Quelle" in erkl and
+              "KI-Dienst" in erkl and "nicht gespeichert" in erkl)
+        check("Footer-Erklärung verlinkt Datenschutz inline",
+              page.locator('.footer-erklaer a[href="datenschutz.html"]').count() == 1)
         page.goto(BASE + "/impressum.html", wait_until="domcontentloaded")
         imp = page.evaluate("document.body.innerText")
         check("Impressum: § 5 DDG + USt-ID", "§ 5 DDG" in imp and "DE462559965" in imp)
